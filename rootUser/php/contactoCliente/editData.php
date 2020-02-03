@@ -3,10 +3,11 @@
 	include("../connection.php");#incluimos la base de datos
 
 	$name = $_REQUEST['name'];
-	$rutLab = $_REQUEST['rutLab'];
-	$idlaboratorio = $_REQUEST['idlaboratorio'];
+	$telefono = $_REQUEST['telefono'];
+	$email = $_REQUEST['email'];
+	$idcontactoCliente = $_REQUEST['idcontactoCliente'];
 
-	$query = "update cliente set cliente.nombreCliente='$name', cliente.rutCliente='$rutLab', cliente.fechaModificacionCliente=NOW() where cliente.idcliente=$idlaboratorio";
+	$query = "update contactoCliente set nombre='$name', telefono='$telefono', email='$email', fechaModificacionContactoCliente=NOW() where idcontactoCliente=$idcontactoCliente";
 
 	$resultado = mysqli_query($conexion, $query);
 

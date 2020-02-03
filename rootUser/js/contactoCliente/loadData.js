@@ -27,7 +27,10 @@ $(window).on('load', function() {
 
     //listamos los datos...
 		var listar = function(){
-	    var t = $('#clientes').DataTable({
+
+			var idcliente = getElementURL('idcliente');
+
+	    var t = $('#areas').DataTable({
 	        "responsive": true,
 	        "language": idioma_espanol,
 	        "dom": '<"newtoolbar">frtip',
@@ -35,64 +38,51 @@ $(window).on('load', function() {
 					"destroy":true,
 					"ajax":{
 						"method":"POST",
-						"url": "../php/laboratorios/showData.php"
+						"url": "../php/contactoCliente/showData.php?idcliente="+idcliente
 					},
 
 					"columns":[
-						{"data":"nombreCliente"},
-						{"data":"rutCliente"},
-						{"data":"fechaCreacionCliente"},
-						{"data":"fechaModificacionCliente"},
-						{"defaultContent": "<button type='button' class='contactos btn btn-success'><i class='fa fa-group'></i></button> <button type='button' class='sucursales btn btn-warning'><i class='fa fa-home'></i></button> <button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#myModalEditar'><i class='fa fa-pencil-square-o'></i></button>	<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
+						{"data":"nombre"},
+						{"data":"telefono"},
+						{"data":"email"},
+						{"data":"fechaCreacionContactoCliente"},
+						{"data":"fechaModificacionContactoCliente"},
+						{"defaultContent": "<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#myModalEditar'><i class='fa fa-pencil-square-o'></i></button>	<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
 					]
 	    });
 	    $('#demo-custom-toolbar2').appendTo($("div.newtoolbar"));
 
-		obtener_id_eliminar("#clientes tbody", t);
-		obtener_data_editar("#clientes tbody", t);
-		obtener_data_contactos("#clientes tbody", t);
-		obtener_data_sucursales("#clientes tbody", t);
-	}
-
-	var obtener_data_contactos = function(tbody, table){
-		$(tbody).on("click", "button.contactos", function(){
-			var data = table.row( $(this).parents("tr") ).data();
-			location.href="../contactoCliente/?idcliente="+data.idcliente;
-		});
-	}
-
-	var obtener_data_sucursales = function(tbody, table){
-		$(tbody).on("click", "button.sucursales", function(){
-			var data = table.row( $(this).parents("tr") ).data();
-			location.href="../sucursalesLab/?idcliente="+data.idcliente;
-		});
+		obtener_id_eliminar("#areas tbody", t);
+		obtener_data_editar("#areas tbody", t);
 	}
 
 	var obtener_id_eliminar = function(tbody, table){
 		$(tbody).on("click", "button.eliminar", function(){
 			var data = table.row( $(this).parents("tr") ).data();
-			var idlaboratorio = $("#frmEliminar #idlaboratorio").val(data.idcliente);
+			var idcontactoCliente = $("#frmEliminar #idcontactoCliente").val(data.idcontactoCliente);
+
 		});
 	}
 
 	var obtener_data_editar = function(tbody, table){
 		$(tbody).on("click", "button.editar", function(){
 			var data = table.row( $(this).parents("tr") ).data();
-			var name = $("#frmEditar #name").val(data.nombreCliente);
-			var rutLab = $("#frmEditar #rutLab").val(data.rutCliente);
-			var idlaboratorio = $("#frmEditar #idlaboratorio").val(data.idcliente);
+			var idcontactoCliente = $("#frmEditar #idcontactoCliente").val(data.idcontactoCliente);
+			var name = $("#frmEditar #name").val(data.nombre);
+			var telefono = $("#frmEditar #telefono").val(data.telefono);
+			var email = $("#frmEditar #email").val(data.email);
 
 		});
 	}
 
 	var eliminar = function(){
-		$("#eliminar-laboratorio").on("click", function(){
-			var idlaboratorio = $("#frmEliminar #idlaboratorio").val();
+		$("#eliminar-contacto").on("click", function(){
+			var idcontactoCliente = $("#frmEliminar #idcontactoCliente").val();
 			$.ajax({
 				method:"POST",
-				url: "../php/laboratorios/removeData.php",
+				url: "../php/contactoCliente/removeData.php",
 				data: {
-						"idlaboratorio": idlaboratorio
+						"idcontactoCliente": idcontactoCliente
 					  }
 			}).done( function( info ){
 				var json_info = JSON.parse( info );
@@ -103,19 +93,21 @@ $(window).on('load', function() {
 	}
 
 	var editar = function(){
-		$("#editar-laboratorio").on("click", function(){
+		$("#editar-contacto").on("click", function(){
 
+			var idcontactoCliente = $("#frmEditar #idcontactoCliente").val();
 			var name = $("#frmEditar #name").val();
-			var rutLab = $("#frmEditar #rutLab").val();
-			var idlaboratorio = $("#frmEditar #idlaboratorio").val();
+			var telefono = $("#frmEditar #telefono").val();
+			var email = $("#frmEditar #email").val();
 
 			$.ajax({
 				method: "POST",
-				url: "../php/laboratorios/editData.php",
+				url: "../php/contactoCliente/editData.php",
 				data: {
 					"name"   : name,
-					"rutLab"   : rutLab,
-					"idlaboratorio" : idlaboratorio
+					"telefono"   : telefono,
+					"email"   : email,
+					"idcontactoCliente": idcontactoCliente
 				}
 
 			}).done( function( info ){
@@ -128,17 +120,21 @@ $(window).on('load', function() {
 	}
 
 	var guardar = function(){
-		$("#agregar-area").on("click", function(){
+		$("#agregar-contacto").on("click", function(){
 
 			var name = $("#frmAgregar #name").val();
-			var rutLab = $("#frmAgregar #rutLab").val();
+			var telefono = $("#frmAgregar #telefono").val();
+			var email = $("#frmAgregar #email").val();
+			var idcliente = getElementURL('idcliente');
 
 			$.ajax({
 				method: "POST",
-				url: "../php/laboratorios/addData.php",
+				url: "../php/contactoCliente/addData.php",
 				data: {
 						"name"   : name,
-						"rutLab"   : rutLab
+						"telefono"   : telefono,
+						"email"   : email,
+						"idcliente"   : idcliente
 					}
 
 			}).done( function( info ){
@@ -200,4 +196,12 @@ $(window).on('load', function() {
 	        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
 	        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 	    }
+	}
+
+function getElementURL(key) {
+
+	  var url_string = window.location;
+		var url = new URL(url_string);
+		var c = url.searchParams.get(key);
+		return c;
 	}

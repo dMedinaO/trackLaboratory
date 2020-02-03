@@ -27,7 +27,10 @@ $(window).on('load', function() {
 
     //listamos los datos...
 		var listar = function(){
-	    var t = $('#clientes').DataTable({
+
+			var idcliente = getElementURL('idcliente');
+
+	    var t = $('#areas').DataTable({
 	        "responsive": true,
 	        "language": idioma_espanol,
 	        "dom": '<"newtoolbar">frtip',
@@ -35,64 +38,59 @@ $(window).on('load', function() {
 					"destroy":true,
 					"ajax":{
 						"method":"POST",
-						"url": "../php/laboratorios/showData.php"
+						"url": "../php/sucursalesCliente/showData.php?idcliente="+idcliente
 					},
 
 					"columns":[
-						{"data":"nombreCliente"},
-						{"data":"rutCliente"},
-						{"data":"fechaCreacionCliente"},
-						{"data":"fechaModificacionCliente"},
-						{"defaultContent": "<button type='button' class='contactos btn btn-success'><i class='fa fa-group'></i></button> <button type='button' class='sucursales btn btn-warning'><i class='fa fa-home'></i></button> <button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#myModalEditar'><i class='fa fa-pencil-square-o'></i></button>	<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
+						{"data":"nombreSucursal"},
+						{"data":"tipoSucursal"},
+						{"data":"region"},
+						{"data":"provincia"},
+						{"data":"comuna"},
+						{"data":"ciudad"},
+						{"data":"direccion"},
+						{"data":"codigoPostal"},
+						{"data":"fechaCreacionSucursal"},
+						{"data":"fechaModificacionSucursal"},
+						{"defaultContent": "<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#myModalEditar'><i class='fa fa-pencil-square-o'></i></button>	<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
 					]
 	    });
 	    $('#demo-custom-toolbar2').appendTo($("div.newtoolbar"));
 
-		obtener_id_eliminar("#clientes tbody", t);
-		obtener_data_editar("#clientes tbody", t);
-		obtener_data_contactos("#clientes tbody", t);
-		obtener_data_sucursales("#clientes tbody", t);
-	}
-
-	var obtener_data_contactos = function(tbody, table){
-		$(tbody).on("click", "button.contactos", function(){
-			var data = table.row( $(this).parents("tr") ).data();
-			location.href="../contactoCliente/?idcliente="+data.idcliente;
-		});
-	}
-
-	var obtener_data_sucursales = function(tbody, table){
-		$(tbody).on("click", "button.sucursales", function(){
-			var data = table.row( $(this).parents("tr") ).data();
-			location.href="../sucursalesLab/?idcliente="+data.idcliente;
-		});
+		obtener_id_eliminar("#areas tbody", t);
+		obtener_data_editar("#areas tbody", t);
 	}
 
 	var obtener_id_eliminar = function(tbody, table){
 		$(tbody).on("click", "button.eliminar", function(){
 			var data = table.row( $(this).parents("tr") ).data();
-			var idlaboratorio = $("#frmEliminar #idlaboratorio").val(data.idcliente);
+			var idsucursal = $("#frmEliminar #idsucursal").val(data.idsucursal);
 		});
 	}
 
 	var obtener_data_editar = function(tbody, table){
 		$(tbody).on("click", "button.editar", function(){
 			var data = table.row( $(this).parents("tr") ).data();
-			var name = $("#frmEditar #name").val(data.nombreCliente);
-			var rutLab = $("#frmEditar #rutLab").val(data.rutCliente);
-			var idlaboratorio = $("#frmEditar #idlaboratorio").val(data.idcliente);
+			var idsucursal = $("#frmEditar #idsucursal").val(data.idsucursal);
+			var name = $("#frmEditar #name").val(data.nombreSucursal);
+			var region = $("#frmEditar #region").val(data.region);
+			var provincia = $("#frmEditar #provincia").val(data.provincia);
+			var comuna = $("#frmEditar #comuna").val(data.comuna);
+			var ciudad = $("#frmEditar #ciudad").val(data.ciudad);
+			var direccion = $("#frmEditar #direccion").val(data.direccion);
+			var codigoPostal = $("#frmEditar #codigoPostal").val(data.codigoPostal);
 
 		});
 	}
 
 	var eliminar = function(){
-		$("#eliminar-laboratorio").on("click", function(){
-			var idlaboratorio = $("#frmEliminar #idlaboratorio").val();
+		$("#eliminar-sucursal").on("click", function(){
+			var idsucursal = $("#frmEliminar #idsucursal").val();
 			$.ajax({
 				method:"POST",
-				url: "../php/laboratorios/removeData.php",
+				url: "../php/sucursalesCliente/removeData.php",
 				data: {
-						"idlaboratorio": idlaboratorio
+						"idsucursal": idsucursal
 					  }
 			}).done( function( info ){
 				var json_info = JSON.parse( info );
@@ -103,19 +101,29 @@ $(window).on('load', function() {
 	}
 
 	var editar = function(){
-		$("#editar-laboratorio").on("click", function(){
+		$("#editar-sucursal").on("click", function(){
 
+			var idsucursal = $("#frmEditar #idsucursal").val();
 			var name = $("#frmEditar #name").val();
-			var rutLab = $("#frmEditar #rutLab").val();
-			var idlaboratorio = $("#frmEditar #idlaboratorio").val();
+			var region = $("#frmEditar #region").val();
+			var provincia = $("#frmEditar #provincia").val();
+			var comuna = $("#frmEditar #comuna").val();
+			var ciudad = $("#frmEditar #ciudad").val();
+			var direccion = $("#frmEditar #direccion").val();
+			var codigoPostal = $("#frmEditar #codigoPostal").val();
 
 			$.ajax({
 				method: "POST",
-				url: "../php/laboratorios/editData.php",
+				url: "../php/sucursalesCliente/editData.php",
 				data: {
 					"name"   : name,
-					"rutLab"   : rutLab,
-					"idlaboratorio" : idlaboratorio
+					"region"   : region,
+					"provincia"   : provincia,
+					"comuna"   : comuna,
+					"ciudad"   : ciudad,
+					"direccion"   : direccion,
+					"codigoPostal"   : codigoPostal,
+					"idsucursal" : idsucursal
 				}
 
 			}).done( function( info ){
@@ -128,17 +136,29 @@ $(window).on('load', function() {
 	}
 
 	var guardar = function(){
-		$("#agregar-area").on("click", function(){
+		$("#agregar-sucursal").on("click", function(){
 
+			var idcliente = getElementURL('idcliente');
 			var name = $("#frmAgregar #name").val();
-			var rutLab = $("#frmAgregar #rutLab").val();
+			var region = $("#frmAgregar #region").val();
+			var provincia = $("#frmAgregar #provincia").val();
+			var comuna = $("#frmAgregar #comuna").val();
+			var ciudad = $("#frmAgregar #ciudad").val();
+			var direccion = $("#frmAgregar #direccion").val();
+			var codigoPostal = $("#frmAgregar #codigoPostal").val();
 
 			$.ajax({
 				method: "POST",
-				url: "../php/laboratorios/addData.php",
+				url: "../php/sucursalesCliente/addData.php",
 				data: {
 						"name"   : name,
-						"rutLab"   : rutLab
+						"region"   : region,
+						"provincia"   : provincia,
+						"comuna"   : comuna,
+						"ciudad"   : ciudad,
+						"direccion"   : direccion,
+						"codigoPostal"   : codigoPostal,
+						"idcliente" : idcliente
 					}
 
 			}).done( function( info ){
@@ -201,3 +221,11 @@ $(window).on('load', function() {
 	        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 	    }
 	}
+
+	function getElementURL(key) {
+
+		  var url_string = window.location;
+			var url = new URL(url_string);
+			var c = url.searchParams.get(key);
+			return c;
+		}

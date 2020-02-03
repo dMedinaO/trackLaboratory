@@ -7,13 +7,15 @@
 	$informacion = [];
 
 	#hacemos la consulta
-	$idlaboratorio = $_REQUEST['idlaboratorio'];
+	$idsucursal = $_REQUEST['idsucursal'];
 
 
-	$query = "delete from cliente where cliente.idcliente=$idlaboratorio";
+	$query = "delete from sucursal where sucursal.idsucursal=$idsucursal";
+	$query2 = "delete from direccion where direccion.iddireccion=$idsucursal";
 	$response['query'] = $query;
 
 	$resultado = mysqli_query($conexion, $query);
+	$resultado = mysqli_query($conexion, $query2);
 	verificar_resultado( $resultado, $response );
 	cerrar( $conexion );
 
