@@ -43,7 +43,7 @@ $(window).on('load', function() {
 						{"data":"rutProveedor"},
 						{"data":"creacion_proveedor"},
 						{"data":"modificacion_proveedor"},
-						{"defaultContent": "<button type='button' class='contactos btn btn-success'><i class='fa fa-home'></i></button> <button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#myModalEditar'><i class='fa fa-pencil-square-o'></i></button>	<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
+						{"defaultContent": "<button type='button' class='contactos btn btn-success'><i class='fa fa-group'></i></button> <button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#myModalEditar'><i class='fa fa-pencil-square-o'></i></button>	<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
 					]
 	    });
 	    $('#demo-custom-toolbar2').appendTo($("div.newtoolbar"));
