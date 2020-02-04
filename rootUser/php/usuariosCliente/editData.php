@@ -2,11 +2,12 @@
 
 	include("../connection.php");#incluimos la base de datos
 
-	$idarea = $_REQUEST['idarea'];
 	$name = $_REQUEST['name'];
-	$descripcion = $_REQUEST['descripcion'];
+	$emailUsuario = $_REQUEST['emailUsuario'];
+	$idusuario = $_REQUEST['idusuario'];
+	$passwordUsuario = $_REQUEST['passwordUsuario'];
 
-	$query = "update area set area.nombreArea = '$name', area.descripcionArea='$descripcion', area.fechaModificacionArea=NOW() where area.idarea=$idarea";
+	$query = "update usuario set usuario.nombreUsuario='$name', usuario.emailUsuario='$emailUsuario', usuario.passwordUsuario='$passwordUsuario', usuario.modifiedUsuario=NOW() where usuario.idusuario=$idusuario";
 
 	$resultado = mysqli_query($conexion, $query);
 

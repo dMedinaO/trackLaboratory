@@ -4,11 +4,14 @@
 
 	#hacemos la obtencion de los datos
 	$name = $_REQUEST['name'];
-	$descripcion = $_REQUEST['descripcion'];
+	$emailUsuario = $_REQUEST['emailUsuario'];
+	$proveedor = $_REQUEST['proveedor'];
+	$passwordUsuario = $_REQUEST['passwordUsuario'];
 
 	$idData = time();
 
-	$query = "insert into area values ($idData, '$name', '$descripcion', NOW(), NOW())";
+	#rol 1 implica que es un usuario del tipo root-laboratorio
+	$query = "insert into usuario values ($idData, '$name', '$emailUsuario', '$passwordUsuario', NOW(), NOW(), 1, NULL, $proveedor)";
 	$resultado = mysqli_query($conexion, $query);
 	verificar_resultado( $resultado, $conexion, $query);
 	cerrar( $conexion );
@@ -27,6 +30,8 @@
 				$informacion["respuesta"] ="BIEN";
 			}
 		}
+
+		$informacion["query"] = $query;
 		echo json_encode($informacion);
 	}
 

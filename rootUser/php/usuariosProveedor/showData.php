@@ -3,7 +3,7 @@
 	#script para hacer la carga de informacion desde la base de datos a la tabla
 	include ("../connection.php");
 
-	$query = "select * from usuario join rol on (rol.idrol = usuario.rol) join proveedor on (usuario.usuario_proveedor = proveedor.idproveedor)";
+	$query = "select * from usuario join rol on (rol.idrol = usuario.rol) join proveedor on (usuario.usuario_proveedor = proveedor.idproveedor) where rol.idrol=2";
 	$resultado = mysqli_query($conexion, $query);
 
 	if (!$resultado){

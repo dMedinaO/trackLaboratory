@@ -7,10 +7,10 @@
 	$informacion = [];
 
 	#hacemos la consulta
-	$idarea = $_REQUEST['idarea'];
+	$idusuario = $_REQUEST['idusuario'];
 
 
-	$query = "delete from area where area.idarea = $idarea";
+	$query = "delete from usuario where usuario.idusuario=$idusuario";
 	$response['query'] = $query;
 
 	$resultado = mysqli_query($conexion, $query);

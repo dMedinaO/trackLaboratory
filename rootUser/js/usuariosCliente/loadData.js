@@ -35,7 +35,7 @@ $(window).on('load', function() {
 					"destroy":true,
 					"ajax":{
 						"method":"POST",
-						"url": "../php/usuarios/showData.php"
+						"url": "../php/usuariosCliente/showData.php"
 					},
 
 					"columns":[
@@ -45,41 +45,42 @@ $(window).on('load', function() {
 						{"data":"createdUsuario"},
 						{"data":"modifiedUsuario"},
 						{"data":"nombreRol"},
-						{"data":"nombreProveedor"},
+						{"data":"nombreCliente"},
 						{"defaultContent": "<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#myModalEditar'><i class='fa fa-pencil-square-o'></i></button>	<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
 					]
 	    });
 	    $('#demo-custom-toolbar2').appendTo($("div.newtoolbar"));
 
-		obtener_id_eliminar("#areas tbody", t);
-		obtener_data_editar("#areas tbody", t);
+		obtener_id_eliminar("#usersData tbody", t);
+		obtener_data_editar("#usersData tbody", t);
 	}
 
 	var obtener_id_eliminar = function(tbody, table){
 		$(tbody).on("click", "button.eliminar", function(){
 			var data = table.row( $(this).parents("tr") ).data();
-			var idarea = $("#frmEliminar #idarea").val(data.idarea);
+			var idusuario = $("#frmEliminar #idusuario").val(data.idusuario);
 		});
 	}
 
 	var obtener_data_editar = function(tbody, table){
 		$(tbody).on("click", "button.editar", function(){
 			var data = table.row( $(this).parents("tr") ).data();
-			var idarea = $("#frmEditar #idarea").val(data.idarea);
-			var name = $("#frmEditar #name").val(data.nombreArea);
-			var descripcion = $("#frmEditar #descripcion").val(data.descripcionArea);
+			var idusuario = $("#frmEditar #idusuario").val(data.idusuario);
+			var name = $("#frmEditar #name").val(data.nombreUsuario);
+			var emailUsuario = $("#frmEditar #emailUsuario").val(data.emailUsuario);
+			var passwordUsuario = $("#frmEditar #passwordUsuario").val(data.passwordUsuario);
 
 		});
 	}
 
 	var eliminar = function(){
-		$("#eliminar-area").on("click", function(){
-			var idarea = $("#frmEliminar #idarea").val();
+		$("#eliminar-usuario").on("click", function(){
+			var idusuario = $("#frmEliminar #idusuario").val();
 			$.ajax({
 				method:"POST",
-				url: "../php/areas/removeData.php",
+				url: "../php/usuariosCliente/removeData.php",
 				data: {
-						"idarea": idarea
+						"idusuario": idusuario
 					  }
 			}).done( function( info ){
 				var json_info = JSON.parse( info );
@@ -90,19 +91,21 @@ $(window).on('load', function() {
 	}
 
 	var editar = function(){
-		$("#editar-area").on("click", function(){
+		$("#editar-usuario").on("click", function(){
 
-			var idarea = $("#frmEditar #idarea").val();
+			var idusuario = $("#frmEditar #idusuario").val();
 			var name = $("#frmEditar #name").val();
-			var descripcion = $("#frmEditar #descripcion").val();
+			var emailUsuario = $("#frmEditar #emailUsuario").val();
+			var passwordUsuario = $("#frmEditar #passwordUsuario").val();
 
 			$.ajax({
 				method: "POST",
-				url: "../php/areas/editData.php",
+				url: "../php/usuariosCliente/editData.php",
 				data: {
-					"idarea"   : idarea,
 					"name"   : name,
-					"descripcion" : descripcion
+					"emailUsuario"   : emailUsuario,
+					"idusuario"   : idusuario,
+					"passwordUsuario"   : passwordUsuario
 				}
 
 			}).done( function( info ){
@@ -115,17 +118,21 @@ $(window).on('load', function() {
 	}
 
 	var guardar = function(){
-		$("#agregar-area").on("click", function(){
+		$("#agregar-usuario").on("click", function(){
 
 			var name = $("#frmAgregar #name").val();
-			var descripcion = $("#frmAgregar #descripcion").val();
+			var emailUsuario = $("#frmAgregar #emailUsuario").val();
+			var proveedor = $("#frmAgregar #proveedor").val();
+			var passwordUsuario = $("#frmAgregar #passwordUsuario").val();
 
 			$.ajax({
 				method: "POST",
-				url: "../php/areas/addData.php",
+				url: "../php/usuariosCliente/addData.php",
 				data: {
 						"name"   : name,
-						"descripcion"   : descripcion
+						"emailUsuario"   : emailUsuario,
+						"proveedor"   : proveedor,
+						"passwordUsuario"   : passwordUsuario
 					}
 
 			}).done( function( info ){

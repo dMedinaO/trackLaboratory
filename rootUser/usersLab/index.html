@@ -70,9 +70,8 @@
     <script src="../plugins/datatables/media/js/dataTables.bootstrap.js"></script>
     <script src="../plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 
-    <script src="../js/proveedores/loadData.js">
-
-    </script>
+    <script src="../js/usuariosCliente/loadData.js"></script>
+    <script src="../js/usuariosCliente/loadDataCliente.js"></script>
 </head>
 
 <!--TIPS-->
@@ -169,22 +168,25 @@
 
                         <div class="panel-heading">
                           <h3 class="panel-title">
-                            Proveedores registrados
+                            Usuarios root de Proveedores registrados en el sistema
                           </h3>
                         </div>
 
                         <div id="demo-custom-toolbar2" class="table-toolbar-left">
-                            <button id="demo-dt-addrow-btn" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="demo-pli-plus"></i> Agregar Proveedor</button>
+                            <button id="demo-dt-addrow-btn" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="demo-pli-plus"></i> Agregar Usuario</button>
                         </div>
 
                         <div class="panel-body">
-                          <table id="clientes" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                          <table id="usersData" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                               <tr>
-                                <th class="min-tablet">Nombre Proveedor</th>
-                                <th class="min-tablet">Rut</th>
+                                <th class="min-tablet">Nombre Usuario</th>
+                                <th class="min-tablet">Email Usuario</th>
+                                <th class="min-tablet">Password</th>
                                 <th class="min-tablet">Fecha Creación</th>
                                 <th class="min-tablet">Fecha Modificación</th>
+                                <th class="min-tablet">Tipo de Usuario</th>
+                                <th class="min-tablet">Proveedor</th>
                                 <th class="min-tablet">Opciones</th>
                                 </tr>
                               </thead>
@@ -192,9 +194,7 @@
                         </div>
                       </div>
                     </div>
-
                   </div>
-
               </div>
             </div>
             <!--MAIN NAVIGATION-->
@@ -264,18 +264,18 @@
 
                               <li>
 
-                                <a href="../roles/">
-                                    <i class="fa fa-users"></i>
-                                    <span class="menu-title">Roles</span><i class="arrow"></i>
-                                </a>
-                                <a href="../users/">
-                                    <i class="fa fa-users"></i>
-                                    <span class="menu-title">Usuarios Proveedor</span><i class="arrow"></i>
-                                </a>
-                                <a href="../usersLab/">
-                                    <i class="fa fa-users"></i>
-                                    <span class="menu-title">Usuarios Laboratorio</span><i class="arrow"></i>
-                                </a>
+                                  <a href="../roles/">
+                                      <i class="fa fa-users"></i>
+                                      <span class="menu-title">Roles</span><i class="arrow"></i>
+                                  </a>
+                                  <a href="../users/">
+                                      <i class="fa fa-users"></i>
+                                      <span class="menu-title">Usuarios Proveedor</span><i class="arrow"></i>
+                                  </a>
+                                  <a href="../usersLab/">
+                                      <i class="fa fa-users"></i>
+                                      <span class="menu-title">Usuarios Laboratorio</span><i class="arrow"></i>
+                                  </a>
                               </li>
 						            </ul>
 
@@ -339,27 +339,47 @@
          <div class="modal-content">
            <div class="modal-header">
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-             <h4 class="modal-title" id="myModalLabel">Agregar Nuevo Proveedor</h4>
+             <h4 class="modal-title" id="myModalLabel">Agregar Nuevo Usuario</h4>
            </div>
            <div class="modal-body">
 
            <form id="frmAgregar" action="" method="POST" data-parsley-validate class="form-horizontal form-label-left">
              <div class="form-group">
-               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre Usuario<span class="required">*</span>
                </label>
 
                <div class="col-md-9 col-sm-9 col-xs-12">
-                 <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese nombre de Laboratorio">
+                 <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese nombre de área">
                </div>
              </div>
 
              <div class="form-group">
-               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rutLab">Rut Proveedor <span class="required">*</span>
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="emailUsuario">Email <span class="required">*</span>
                </label>
                <div class="col-md-9 col-sm-9 col-xs-12">
-                 <input type="text" id="rutLab" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese Rut">
+                 <input type="text" id="emailUsuario" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
                </div>
              </div>
+
+             <div class="form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="passwordUsuario">Password <span class="required">*</span>
+               </label>
+               <div class="col-md-9 col-sm-9 col-xs-12">
+                 <input type="text" id="passwordUsuario" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+               </div>
+             </div>
+
+             <!-- seleccionar al proveedor -->
+             <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-lg-3" for="proveedor">Proveedor <span class="required">*</span>
+              </label>
+              <div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+                <div class="selector-proveedores">
+                  <select id="proveedor" class="form-control" required>
+                  </select>
+                </div>
+              </div>
+            </div>
 
              <div class="ln_solid"></div>
 
@@ -370,7 +390,7 @@
              <div class="form-group">
                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                  <button type="reset" class="btn btn-primary">Resetear</button>
-                 <button type="button" id="agregar-proveedor" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                 <button type="button" id="agregar-usuario" class="btn btn-success" data-dismiss="modal">Aceptar</button>
                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                </div>
              </div>
@@ -382,20 +402,20 @@
 
    <div>
      <form id="frmEliminar" action="" method="POST">
-       <input type="hidden" id="idproveedor" name="idproveedor" value="">
+       <input type="hidden" id="idusuario" name="idusuario" value="">
        <!-- Modal -->
        <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
          <div class="modal-dialog" role="document">
            <div class="modal-content">
              <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-               <h4 class="modal-title" id="modalEliminarLabel">Eliminar Proveedor</h4>
+               <h4 class="modal-title" id="modalEliminarLabel">Eliminar Usuario</h4>
              </div>
              <div class="modal-body">
-               ¿Está seguro de eliminar el proveedor seleccionado?<strong data-name=""></strong>
+               ¿Está seguro de eliminar el usuario seleccionado?<strong data-name=""></strong>
              </div>
              <div class="modal-footer">
-               <button type="button" id="eliminar-proveedor" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+               <button type="button" id="eliminar-usuario" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
              </div>
            </div>
@@ -410,31 +430,38 @@
          <div class="modal-content">
            <div class="modal-header">
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-             <h4 class="modal-title" id="myModalLabel">Editar proveedor seleccionado</h4>
+             <h4 class="modal-title" id="myModalLabel">Editar usuario seleccionado</h4>
            </div>
            <div class="modal-body">
 
            <form id="frmEditar" action="" method="POST" data-parsley-validate class="form-horizontal form-label-left">
-             <input type="hidden" id="idproveedor" name="idproveedor" value="">
+             <input type="hidden" id="idusuario" name="idusuario" value="">
              <div class="form-group">
-               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre Usuario<span class="required">*</span>
                </label>
 
                <div class="col-md-9 col-sm-9 col-xs-12">
-                 <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese nombre de Laboratorio">
+                 <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese nombre de área">
                </div>
              </div>
 
              <div class="form-group">
-               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rutLab">Rut Proveedor <span class="required">*</span>
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="emailUsuario">Email <span class="required">*</span>
                </label>
                <div class="col-md-9 col-sm-9 col-xs-12">
-                 <input type="text" id="rutLab" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese Rut">
+                 <input type="text" id="emailUsuario" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+               </div>
+             </div>
+
+             <div class="form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="passwordUsuario">Password <span class="required">*</span>
+               </label>
+               <div class="col-md-9 col-sm-9 col-xs-12">
+                 <input type="text" id="passwordUsuario" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
                </div>
              </div>
 
              <div class="ln_solid"></div>
-
 
            </div>
 
@@ -442,7 +469,7 @@
              <div class="form-group">
                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                  <button type="reset" class="btn btn-primary">Resetear</button>
-                 <button type="button" id="editar-proveedor" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                 <button type="button" id="editar-usuario" class="btn btn-success" data-dismiss="modal">Aceptar</button>
                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                </div>
              </div>
