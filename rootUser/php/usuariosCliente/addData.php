@@ -4,13 +4,11 @@
 
 	#hacemos la obtencion de los datos
 	$name = $_REQUEST['name'];
-	$rutLab = $_REQUEST['rutLab'];
-	$name = $_REQUEST['name'];
-	$rutLab = $_REQUEST['rutLab'];
-	
+	$descripcion = $_REQUEST['descripcion'];
+
 	$idData = time();
 
-	$query = "insert into proveedor values ($idData, '$name', '$rutLab', NOW(), NOW())";
+	$query = "insert into area values ($idData, '$name', '$descripcion', NOW(), NOW())";
 	$resultado = mysqli_query($conexion, $query);
 	verificar_resultado( $resultado, $conexion, $query);
 	cerrar( $conexion );
