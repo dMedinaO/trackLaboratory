@@ -11,7 +11,7 @@
 	$idData = time();
 
 	#rol 2 implica que es un usuario del tipo root-proveedor
-	$query = "insert into usuario values ($idData, '$name', '$emailUsuario', '$passwordUsuario', NOW(), NOW(), 2, $proveedor, NULL)";
+	$query = "insert into usuario values ($idData, '$name', '$emailUsuario', '$passwordUsuario', NOW(), NOW(), 2, $proveedor, NULL, NULL, NULL)";
 	$resultado = mysqli_query($conexion, $query);
 	verificar_resultado( $resultado, $conexion, $query);
 	cerrar( $conexion );
