@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Root User</title>
+    <title>Dashboard Root Proveedor</title>
 
     <!--STYLESHEET-->
     <!--=================================================-->
@@ -70,7 +70,7 @@
     <script src="../plugins/datatables/media/js/dataTables.bootstrap.js"></script>
     <script src="../plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 
-    <script src="../js/areas/loadData.js">
+    <script src="../js/equipo/loadData.js">
 
     </script>
 </head>
@@ -91,7 +91,7 @@
                     <a href="../" class="navbar-brand">
                         <img src="../img/logo.png" alt="Nifty Logo" class="brand-icon">
                         <div class="brand-title">
-                            <span class="brand-text">ROOT View</span>
+                            <span class="brand-text">Root-Proveedor View</span>
                         </div>
                     </a>
                 </div>
@@ -125,7 +125,7 @@
                                     <!--<img class="img-circle img-user media-object" src="img/profile-photos/1.png" alt="Profile Picture">-->
                                     <i class="demo-pli-male"></i>
                                 </span>
-                                <div class="username hidden-xs">Root</div>
+                                <div class="username hidden-xs">Root-Proveedor</div>
                             </a>
 
 
@@ -169,21 +169,26 @@
 
                         <div class="panel-heading">
                           <h3 class="panel-title">
-                            Áreas de laboratorio registradas
+                            Equipos registrados en el sistema
                           </h3>
                         </div>
 
                         <div id="demo-custom-toolbar2" class="table-toolbar-left">
-                            <button id="demo-dt-addrow-btn" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="demo-pli-plus"></i> Agregar Área</button>
+                            <button id="demo-dt-addrow-btn" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="demo-pli-plus"></i> Agregar Equipo</button>
                         </div>
 
                         <div class="panel-body">
-                          <table id="areas" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                          <table id="equipo" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                               <tr>
-                                <th class="min-tablet">Nombre Área</th>
-                                <th class="min-tablet">Descripción</th>
-                                <th class="min-tablet">Fecha Creación</th>
+                                <th class="min-tablet">Serie</th>
+                                <th class="min-tablet">Nombre Equipo</th>
+                                <th class="min-tablet">Detalle</th>
+                                <th class="min-tablet">#Activo</th>
+                                <th class="min-tablet">Fabricación</th>
+                                <th class="min-tablet">Estado</th>
+                                <th class="min-tablet">Nombre Genérico</th>
+                                <th class="min-tablet">Fecha Ingreso</th>
                                 <th class="min-tablet">Fecha Modificación</th>
                                 <th class="min-tablet">Opciones</th>
                                 </tr>
@@ -213,13 +218,13 @@
                                 <div id="mainnav-profile" class="mainnav-profile">
                                     <div class="profile-wrap text-center">
                                         <div class="pad-btm">
-                                            <img class="img-circle img-md" src="../img/profile-photos/4.png" alt="Profile Picture">
+                                            <img class="img-circle img-md" src="../img/profile-photos/2.png" alt="Profile Picture">
                                         </div>
                                         <a href="#profile-nav" class="box-block" data-toggle="collapse" aria-expanded="false">
                                             <span class="pull-right dropdown-toggle">
                                                 <i class="dropdown-caret"></i>
                                             </span>
-                                            <p class="mnp-name">Root</p>
+                                            <p class="mnp-name">Root-Proveedor</p>
                                         </a>
                                     </div>
                                     <div id="profile-nav" class="collapse list-group bg-trans">
@@ -232,49 +237,38 @@
 
                                 <ul id="mainnav-menu" class="list-group">
 
-          						            <!--Category name-->
-          						            <li class="list-header">Administración Laboratorios</li>
+                                  <!--Category name-->
+          						            <li class="list-header">Administración Personal</li>
 
           						            <!--Menu list item-->
           						            <li>
-          						                <a href="../laboratorios/">
-          						                    <i class="fa fa-industry"></i>
-          						                    <span class="menu-title">Laboratorios</span><i class="arrow"></i>
+          						                <a href="../personal/">
+          						                    <i class="fa fa-group"></i>
+          						                    <span class="menu-title">Personal Técnico</span><i class="arrow"></i>
           						                </a>
           						            </li>
 
-                                  <li>
-          						                <a href="../areas/">
-          						                    <i class="fa fa-table"></i>
-          						                    <span class="menu-title">Áreas</span><i class="arrow"></i>
-          						                </a>
-          						            </li>
-
-                                <li class="list-header">Administración Proveedores</li>
+                                <li class="list-header">Administración Equipos</li>
 
                                 <!--Menu list item-->
                                 <li>
-                                    <a href="../proveedores/">
+                                    <a href="../equipo/">
                                         <i class="fa fa-industry"></i>
-                                        <span class="menu-title">Proveedores</span><i class="arrow"></i>
+                                        <span class="menu-title">Mis Equipos</span><i class="arrow"></i>
+                                    </a>
+
+                                    <a href="">
+                                        <i class="fa fa-history"></i>
+                                        <span class="menu-title">Solicitudes</span><i class="arrow"></i>
                                     </a>
                                 </li>
 
-                              <li class="list-header">Administración Usuarios</li>
+                              <li class="list-header">Administración Contratos</li>
 
                               <li>
-
-                                  <a href="../roles/">
-                                      <i class="fa fa-users"></i>
-                                      <span class="menu-title">Roles</span><i class="arrow"></i>
-                                  </a>
-                                  <a href="../users/">
-                                      <i class="fa fa-users"></i>
-                                      <span class="menu-title">Usuarios Proveedor</span><i class="arrow"></i>
-                                  </a>
-                                  <a href="../usersLab/">
-                                      <i class="fa fa-users"></i>
-                                      <span class="menu-title">Usuarios Laboratorio</span><i class="arrow"></i>
+                                  <a href="">
+                                      <i class="fa fa-file"></i>
+                                      <span class="menu-title">Mis Contratos</span><i class="arrow"></i>
                                   </a>
                               </li>
 						            </ul>
@@ -339,25 +333,71 @@
          <div class="modal-content">
            <div class="modal-header">
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-             <h4 class="modal-title" id="myModalLabel">Agregar Nueva Área</h4>
+             <h4 class="modal-title" id="myModalLabel">Agregar Nuevo Equipo</h4>
            </div>
            <div class="modal-body">
 
            <form id="frmAgregar" action="" method="POST" data-parsley-validate class="form-horizontal form-label-left">
              <div class="form-group">
-               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="serie">Serie <span class="required">*</span>
                </label>
 
                <div class="col-md-9 col-sm-9 col-xs-12">
-                 <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese nombre de área">
+                 <input type="text" id="serie" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese nombre de área">
                </div>
              </div>
 
              <div class="form-group">
-               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">Descripción <span class="required">*</span>
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nameEquipo">Nombre Equipo <span class="required">*</span>
                </label>
                <div class="col-md-9 col-sm-9 col-xs-12">
-                 <input type="text" id="descripcion" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+                 <input type="text" id="nameEquipo" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+               </div>
+             </div>
+
+             <div class="form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="detalleEquipo">Detalle Equipo <span class="required">*</span>
+               </label>
+               <div class="col-md-9 col-sm-9 col-xs-12">
+                 <input type="text" id="detalleEquipo" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+               </div>
+             </div>
+
+             <div class="form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="numeroActivo"># Activo <span class="required">*</span>
+               </label>
+               <div class="col-md-9 col-sm-9 col-xs-12">
+                 <input type="text" id="numeroActivo" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+               </div>
+             </div>
+
+             <div class="form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fechaFabricacion">Fecha Fabricación <span class="required">*</span>
+               </label>
+               <div class="col-md-9 col-sm-9 col-xs-12">
+                 <input type="text" id="fechaFabricacion" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+               </div>
+             </div>
+
+             <div class="form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombreGenerico">Nombre Genérico <span class="required">*</span>
+               </label>
+               <div class="col-md-9 col-sm-9 col-xs-12">
+                 <input type="text" id="nombreGenerico" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+               </div>
+             </div>
+
+             <div class="form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Seleccione estado<span class="required">*</span>
+               </label>
+
+               <div class="col-md-9 col-sm-9 col-xs-12">
+                 <select id="status" class="form-control">
+                   <option>ACTIVO</option>
+                   <option>FUNCIONAL</option>
+                   <option>MANTENIMIENTO</option>
+                   <option>FALLA</option>
+                 </select>
                </div>
              </div>
 
@@ -370,7 +410,7 @@
              <div class="form-group">
                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                  <button type="reset" class="btn btn-primary">Resetear</button>
-                 <button type="button" id="agregar-area" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                 <button type="button" id="agregar-equipo" class="btn btn-success" data-dismiss="modal">Aceptar</button>
                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                </div>
              </div>
@@ -382,20 +422,20 @@
 
    <div>
      <form id="frmEliminar" action="" method="POST">
-       <input type="hidden" id="idarea" name="idarea" value="">
+       <input type="hidden" id="idequipo" name="idequipo" value="">
        <!-- Modal -->
        <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
          <div class="modal-dialog" role="document">
            <div class="modal-content">
              <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-               <h4 class="modal-title" id="modalEliminarLabel">Eliminar Área</h4>
+               <h4 class="modal-title" id="modalEliminarLabel">Eliminar Equipo</h4>
              </div>
              <div class="modal-body">
-               ¿Está seguro de eliminar el área seleccionada?<strong data-name=""></strong>
+               ¿Está seguro de eliminar el equipo seleccionado?<strong data-name=""></strong>
              </div>
              <div class="modal-footer">
-               <button type="button" id="eliminar-area" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+               <button type="button" id="eliminar-equipo" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
              </div>
            </div>
@@ -410,26 +450,72 @@
          <div class="modal-content">
            <div class="modal-header">
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-             <h4 class="modal-title" id="myModalLabel">Editar área seleccionada</h4>
+             <h4 class="modal-title" id="myModalLabel">Editar equipo seleccionado</h4>
            </div>
            <div class="modal-body">
 
            <form id="frmEditar" action="" method="POST" data-parsley-validate class="form-horizontal form-label-left">
-             <input type="hidden" id="idarea" name="idarea" value="">
+             <input type="hidden" id="idequipo" name="idequipo" value="">
              <div class="form-group">
-               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="serie">Serie <span class="required">*</span>
                </label>
 
                <div class="col-md-9 col-sm-9 col-xs-12">
-                 <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese nombre de área">
+                 <input type="text" id="serie" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese nombre de área">
                </div>
              </div>
 
              <div class="form-group">
-               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">Descripción <span class="required">*</span>
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nameEquipo">Nombre Equipo <span class="required">*</span>
                </label>
                <div class="col-md-9 col-sm-9 col-xs-12">
-                 <input type="text" id="descripcion" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+                 <input type="text" id="nameEquipo" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+               </div>
+             </div>
+
+             <div class="form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="detalleEquipo">Detalle Equipo <span class="required">*</span>
+               </label>
+               <div class="col-md-9 col-sm-9 col-xs-12">
+                 <input type="text" id="detalleEquipo" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+               </div>
+             </div>
+
+             <div class="form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="numeroActivo"># Activo <span class="required">*</span>
+               </label>
+               <div class="col-md-9 col-sm-9 col-xs-12">
+                 <input type="text" id="numeroActivo" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+               </div>
+             </div>
+
+             <div class="form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fechaFabricacion">Fecha Fabricación <span class="required">*</span>
+               </label>
+               <div class="col-md-9 col-sm-9 col-xs-12">
+                 <input type="text" id="fechaFabricacion" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+               </div>
+             </div>
+
+             <div class="form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombreGenerico">Nombre Genérico <span class="required">*</span>
+               </label>
+               <div class="col-md-9 col-sm-9 col-xs-12">
+                 <input type="text" id="nombreGenerico" required="required" class="form-control col-md-7 col-xs-12" placeholder="Ingrese descripcion">
+               </div>
+             </div>
+
+             <div class="form-group">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Seleccione estado<span class="required">*</span>
+               </label>
+
+               <div class="col-md-9 col-sm-9 col-xs-12">
+                 <select id="status" class="form-control">
+                   <option>ACTIVO</option>
+                   <option>FUNCIONAL</option>
+                   <option>MANTENIMIENTO</option>
+                   <option>FALLA</option>
+                 </select>
                </div>
              </div>
 
@@ -442,7 +528,7 @@
              <div class="form-group">
                <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                  <button type="reset" class="btn btn-primary">Resetear</button>
-                 <button type="button" id="editar-area" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                 <button type="button" id="editar-equipo" class="btn btn-success" data-dismiss="modal">Aceptar</button>
                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                </div>
              </div>
